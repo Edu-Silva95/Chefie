@@ -1,0 +1,101 @@
+.page-container {
+  max-width: 40rem;
+  width: 100%;
+  margin: 4rem auto;
+  padding: 2rem;
+  background: $color-tertiary-light;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.form-card__title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  margin-top: 3.5rem;
+  font-weight: bold;
+  text-align: center;
+  color: $color-secondary-dark;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: $color-secondary-dark;
+}
+
+.form-input,
+.form-textarea {
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: $color-secondary-dark;
+  color: $color-tertiary-light;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-color: $color-secondary-light;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(215, 187, 152, 0.5);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: $color-tertiary-light;
+  opacity: 1;
+}
+
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.new-community__btn {
+  color: $color-tertiary-light;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  justify-self: center;
+
+
+  &--primary {
+    background-color: $color-secondary-dark;
+  }
+
+  &:hover {
+    background-color: $color-secondary-dark-hover;
+  }
+
+  &:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.communities-new-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 100%;
+
+  .page-container {
+    flex: 1;
+  }
+}

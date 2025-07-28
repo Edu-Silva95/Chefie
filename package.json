@@ -1,0 +1,36 @@
+{
+  "name": "recipe_app",
+  "version": "1.0.0",
+  "description": "A recipe application project, not intended for production use.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+   "test": "echo \"Error: no test specified\" && exit 1",
+
+    "compile:css": "sass app/assets/stylesheets/application.scss app/assets/builds/compiled.css",
+    "concat:css": "cat app/assets/builds/compiled.css > app/assets/builds/concatenated.css",
+    "prefix:css": "postcss app/assets/builds/concatenated.css --use autoprefixer -o app/assets/builds/prefixed.css",
+    "compress:css": "cleancss -o app/assets/builds/application.css app/assets/builds/prefixed.css",
+
+    "build:css": "npm-run-all compile:css concat:css prefix:css compress:css",
+
+    "sass:watch": "sass --watch app/assets/stylesheets/application.scss:app/assets/builds/application.css"
+  },
+  "keywords": [],
+  "author": "Eduardo Silva",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "clean-css-cli": "^5.6.3",
+    "node-sass": "^9.0.0",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^11.0.1",
+    "sass": "^1.89.2"
+  },
+  "dependencies": {
+    "aos": "^2.3.4"
+  }
+}

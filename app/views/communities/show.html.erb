@@ -1,0 +1,128 @@
+<div class="community-page-container">
+  <div class="community-nav-buttons">
+    <%= link_to communities_path, class: "custom-back-btn-link custom-back-btn-link--full" do %>
+      <span>← Back to Communities</span>
+    <% end %>
+
+    <%= link_to "🏠 Home", dashboard_index_path, class: "community-btn community-btn--home" %>
+  </div>
+
+  <div class="community-wrapper">
+    <nav class="breadcrumbs">
+      <%= link_to "Communities", communities_path, class: "breadcrumb-item" %>
+      <span class="breadcrumb-item"><%= @community.title %></span>
+    </nav>
+
+    <h2 class="topics-heading">Topics</h2>
+
+    <div class="community-layout">
+      <div class="community-main">
+
+        <% if @search_query.present? %>
+          <p>Showing results for "<%= @search_query %>":</p>
+          <%= link_to "Clear search", community_path(@community), class: "btn btn-link" %>
+        <% end %>
+
+        <div id="new-topic-form-container" class="topic-form__wrapper hidden">
+          <%= form_with model: [@community, Topic.new], local: true, html: { class: "topic-form" } do |f| %>
+            <div class="topic-form__group">
+              <%= f.label :title, "Title", class: "topic-form__label" %>
+              <%= f.text_field :title, class: "topic-form__input", required: true, placeholder: "Enter a title" %>
+            </div>
+
+            <div class="topic-form__group">
+              <%= f.label :content, "Content", class: "topic-form__label" %>
+              <%= f.text_area :content, rows: 5, class: "topic-form__textarea", required: true, placeholder: "Say something" %>
+            </div>
+
+            <div class="topic-form__actions">
+              <%= f.submit "Post Topic", class: "topic-form__submit" %>
+            </div>
+          <% end %>
+        </div>
+
+        <% if @topics.any? %>
+          <table class="topics-table">
+            <colgroup>
+              <col style="width: 75%;" />
+              <col style="width: 15%;" />
+              <col style="width: 10%;" />
+            </colgroup>
+            <thead>
+              <tr></tr>
+            </thead>
+            <tbody>
+              <% @topics.each do |t| %>
+                <tr class="topic-row">
+                  <td class="topic-title">
+                    <%= link_to community_topic_path(@community, t), class: "topic-link" do %>
+                      <span class="topic-title-flex">
+                        <span class="topic-icon">📨</span>
+                        <span class="topic-text"><%= t.title %></span>
+                      </span>
+                    <% end %>
+                    <div class="topic-meta"><%= t.user.username %></div>
+                  </td>
+                  <td class="topic-last-activity th-right">
+                    <% if t.replies.any? %>
+                      <%= friendly_time_ago(t.replies.order(updated_at: :desc).first.updated_at) %>
+                    <% else %>
+                      <%= friendly_time_ago(t.created_at) %>
+                    <% end %>
+                  </td>
+                  <td class="topic-replies th-right">
+                    💬 <%= t.replies.count %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <%= paginate @topics %>
+        <% else %>
+          <p>No topics yet. Start the first one!</p>
+        <% end %>
+      </div>
+
+      <aside class="community-sidebar">
+        <div class="search-container">
+          <%= form_with url: community_path(@community), method: :get, local: true, html: { class: "search-form" } do |f| %>
+            <div class="search-input-wrapper">
+              <%= f.text_field :query, value: @search_query, placeholder: "Search topics...", class: "search-input" %>
+              <button type="submit" class="search-btn" aria-label="Search">
+                🔍
+              </button>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="new-topic-button-container">
+          <button id="new-topic-toggle" class="btn btn-primary new-topic-button">
+            Start a discussion
+          </button>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<script>
+  function setupNewTopicToggle() {
+    const toggleBtn = document.getElementById("new-topic-toggle");
+    const formContainer = document.getElementById("new-topic-form-container");
+
+    if (!toggleBtn || !formContainer) return;
+
+    const newToggleBtn = toggleBtn.cloneNode(true);
+    toggleBtn.parentNode.replaceChild(newToggleBtn, toggleBtn);
+
+    newToggleBtn.addEventListener("click", () => {
+      formContainer.classList.toggle("hidden");
+      newToggleBtn.textContent = formContainer.classList.contains("hidden")
+        ? "Start a discussion"
+        : "× Cancel";
+    });
+  }
+
+  document.addEventListener("turbo:load", setupNewTopicToggle);
+  document.addEventListener("turbo:frame-load", setupNewTopicToggle);
+</script>

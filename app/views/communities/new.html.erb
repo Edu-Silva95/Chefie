@@ -1,0 +1,27 @@
+ <div class="communities-new-wrapper">
+  <div class="page-container">
+    <div class="form-card">
+      <%= link_to communities_path, class: "custom-back-btn-link custom-back-btn-link--full" do %>
+        <span>← Back to Communities</span>
+      <% end %>
+
+      <h1 class="form-card__title">Create a new Community!</h1>
+
+      <%= form_with model: @community, local: true, class: "form" do |f| %>
+        <div class="form-group">
+          <%= f.label :title, class: "form-label" %>
+          <%= f.text_field :title, required: true, class: "form-input", placeholder: "Enter a community title" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :description, class: "form-label" %>
+          <%= f.text_area :description, rows: 4, class: "form-textarea", placeholder: "Enter a brief description of the community" %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.submit "Create Community", class: "new-community__btn new-community__btn--primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

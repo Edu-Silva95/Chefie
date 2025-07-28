@@ -1,0 +1,15 @@
+<div id="topics_form">
+  <%= form_with model: [community, topic], local: false do |f| %>
+    <%= f.text_field :title, placeholder: "Topic title", required: true, class: "form-control" %>
+    <% if topic.errors.any? %>
+      <div class="errors">
+        <ul>
+          <% topic.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= f.submit "Create Topic", class: "btn btn-primary" %>
+  <% end %>
+</div>

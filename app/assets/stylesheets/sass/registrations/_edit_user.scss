@@ -1,0 +1,156 @@
+.form-page-wrapper {
+  width: 75rem;
+  margin: 3rem auto;
+  padding: 3rem 2rem;
+  background-color: $color-grey-light-2;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.user-edit-page {
+  max-width: 75rem;
+  margin: 3rem auto;
+  padding: 3rem 2rem;
+  background-color: $color-grey-light-2;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.user-edit-page__nav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.user-edit-btn,
+.user-edit-page__btn--home {
+  font-size: 1rem;
+  color: #555;
+  text-decoration: none;
+  font-weight: 600;
+  background: none;
+  border: 2px solid #555;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease;
+
+  &:hover,
+  &:focus {
+    color: #ff5722;
+    border-color: #ff5722;
+    background-color: rgba(255, 87, 34, 0.1);
+    outline: none;
+  }
+}
+
+.nav-spacer {
+  flex-grow: 1;
+}
+
+.user-edit-page__content {
+  background-color: $color-secondary-light;
+  max-width: 700px;
+  width: 100%;
+  margin: 5rem auto;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.user-edit-page__title {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: $color-secondary-dark;
+  font-weight: 800;
+}
+
+.user-edit-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-edit-form__group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-edit-form__label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: $color-secondary-dark;
+  font-size: 1.2rem;
+}
+
+.user-edit-form__input,
+.user-edit-form__file {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+
+  &:focus {
+    border-color: #ff5722;
+    box-shadow: 0 0 6px rgba(255, 87, 34, 0.6);
+    outline: none;
+  }
+}
+
+.user-edit-form__actions {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.user-edit-form__btn {
+  background-color: #ff7f50;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover,
+  &:focus {
+    background-color: #ff5722;
+    outline: none;
+  }
+}
+
+/* Red cancel button */
+.btn-danger {
+  background-color: #ff4a4a;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover,
+  &:focus {
+    background-color: #e04343;
+    outline: none;
+  }
+}
+
+.user-edit-form__info {
+  margin-bottom: 1.5rem;
+  color: #666;
+  font-style: italic;
+  font-size: 1rem;
+}

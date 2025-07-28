@@ -1,0 +1,238 @@
+.all-recipes__page {
+  max-width: 1600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: $color-grey-light-2;
+  border-radius: 1rem;
+}
+
+.all-recipes__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.all-recipes__title {
+  color: $color-secondary-dark;
+  font-family: $font-title;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.all-recipes__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.all-recipes__card {
+  background: $color-secondary-light;
+  color: $color-secondary-dark-hover;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 2rem 1rem 1rem;
+  text-align: center;
+  position: relative;
+  margin-top: 5rem;
+}
+
+.all-recipes__card-image-wrapper {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+}
+
+.all-recipes__card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.all-recipes__card-title {
+  color: $color-secondary-dark;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 160px;
+}
+
+.all-recipes__author {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0.5rem 0;
+}
+
+.all-recipes__meta {
+  font-size: 0.85rem;
+  color: #999;
+  margin-bottom: 0.75rem;
+}
+
+.all-recipes__btn {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #8fd19e;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: #7fcf8e;
+  }
+
+  &--small {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+.all-recipes__empty {
+  text-align: center;
+  color: #555;
+  margin-top: 3rem;
+}
+
+.all-recipes__nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.all-recipes-btn {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 0.5rem 1.2rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  color: #333;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #e0e0e0;
+  }
+
+  &--back {
+    margin-right: 1rem;
+  }
+
+  &--home {
+    margin-left: 1rem;
+  }
+}
+
+.favorite-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.2s ease;
+  color: #bbb;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+
+  &--active {
+    color: #e6005c;
+  }
+}
+
+.all-recipes__card-actions {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.all-recipes__card-btn {
+  background-color: #00BFA6;
+  left: 1rem;
+  padding: 14px 25px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  border-radius: 10px;
+  border: 2px dashed #00BFA6;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+              rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: .4s;
+  margin-left: 0.3rem;
+  text-decoration: none;
+  font-size: .9rem;
+}
+
+.all-recipes__card-btn span:last-child {
+  display: none;
+}
+
+.all-recipes__card-btn:hover {
+  background-color: #fff;
+  color: #00BFA6;
+  border: 2px dashed #00BFA6;
+}
+
+.all-recipes__card-btn:active {
+  background-color: #87dbd0;
+}
+
+.all-recipes__actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
+}
+
+.all-recipes__btn--new {
+  background-color: $color-primary;
+  color: white;
+
+  &:hover {
+    background-color: darken($color-primary, 10%);
+  }
+}
+
+.all-recipes__pagination {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+
+  .pagination {
+    display: flex;
+    gap: 0.5rem;
+
+    .page,
+    .current,
+    .next,
+    .prev {
+      padding: 0.5rem 0.8rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      color: #333;
+      text-decoration: none;
+    }
+
+    .current {
+      background-color: #28a745;
+      color: white;
+      border-color: #28a745;
+    }
+
+    .page:hover {
+      background-color: #f5f5f5;
+    }
+  }
+}

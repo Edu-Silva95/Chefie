@@ -1,0 +1,121 @@
+.new-recipe-container {
+  max-width: 1600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: $color-grey-light-2;
+  min-height: 100vh;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.new-recipe__nav-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.new-recipe-page {
+  background-color: $color-secondary-light;
+  max-width: 700px;
+  width: 100%;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  margin-bottom: 5rem;
+}
+
+.new-recipe-page__title {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: $color-secondary-dark;
+}
+
+.new-recipe-form__group {
+  margin-bottom: 1.5rem;
+}
+
+.new-recipe-form__label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: $color-secondary-dark;
+  font-size: 1.3rem;
+}
+
+.new-recipe-form__input,
+.new-recipe-form__textarea {
+  width: 95%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.new-recipe-form__file {
+  font-size: 1rem;
+}
+
+.new-recipe-form__actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+
+.new-recipe-form__btn {
+  background-color: $color-secondary-dark;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.new-recipe-form__btn:hover {
+  background-color: $color-secondary-dark-hover;
+  color: $color-tertiary-light;
+}
+
+.select-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+}
+
+.new-recipe-form__select {
+  width: 99%;
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1.5px solid #ccc;
+  background-color: white;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+
+  &:focus {
+    border-color: #ff5722;
+    box-shadow: 0 0 6px rgba(255, 87, 34, 0.6);
+    outline: none;
+  }
+}
+
+.select-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+  transform: translateY(-50%);
+  background-image: url("data:image/svg+xml,%3Csvg fill='%23666' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+}

@@ -1,0 +1,46 @@
+<%= paginator.render do -%>
+  <nav class="steam-pagination" role="navigation" aria-label="Pagination Navigation">
+    <ul class="steam-pagination__list">
+      <%# First and Prev %>
+      <% if current_page.first? %>
+        <li class="steam-pagination__item steam-pagination__disabled">« First</li>
+        <li class="steam-pagination__item steam-pagination__disabled">‹ Prev</li>
+      <% else %>
+        <li class="steam-pagination__item steam-pagination__nav">
+          <%= link_to '« First', url_for(page: 1), class: "steam-pagination__link" %>
+        </li>
+        <li class="steam-pagination__item steam-pagination__nav">
+          <%= link_to '‹ Prev', url_for(page: current_page.number - 1), class: "steam-pagination__link" %>
+        </li>
+      <% end %>
+
+      <%# Page numbers %>
+      <% each_page do |page| -%>
+        <% if page.display_tag? -%>
+          <% if page.current? -%>
+            <li class="steam-pagination__item steam-pagination__active" aria-current="page"><span><%= page.number %></span></li>
+          <% else -%>
+            <li class="steam-pagination__item">
+              <%= page_tag(page) %>
+            </li>
+          <% end -%>
+        <% elsif !page.was_truncated? -%>
+          <li class="steam-pagination__item steam-pagination__ellipsis">…</li>
+        <% end -%>
+      <% end -%>
+
+      <%# Next and Last %>
+      <% if current_page.last? %>
+        <li class="steam-pagination__item steam-pagination__disabled">Next ›</li>
+        <li class="steam-pagination__item steam-pagination__disabled">Last »</li>
+      <% else %>
+        <li class="steam-pagination__item steam-pagination__nav">
+          <%= link_to 'Next ›', url_for(page: current_page.number + 1), class: "steam-pagination__link" %>
+        </li>
+        <li class="steam-pagination__item steam-pagination__nav">
+          <%= link_to 'Last »', url_for(page: total_pages), class: "steam-pagination__link" %>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
+<% end -%>

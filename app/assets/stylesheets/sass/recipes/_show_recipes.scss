@@ -1,0 +1,129 @@
+.recipe-show {
+  max-width: 800px;
+  margin: 3rem auto;
+  background-color: $color-grey-light-2;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  font-family: 'Source Sans Pro', sans-serif;
+
+  &__header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  &__back-btn {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: $color-secondary-dark;
+  }
+
+  &__author {
+    font-size: 1rem;
+    color: #666;
+  }
+
+  &__image-wrapper {
+    text-align: center;
+    margin: 2rem 0;
+
+    .recipe-show__image {
+      width: 50vw;
+      max-width: 300px;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      object-fit: cover;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+
+  &__info {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+
+    p {
+      margin: 0.5rem 0;
+    }
+  }
+
+  &__section {
+    margin-bottom: 2rem;
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.25rem;
+    }
+
+    p {
+      white-space: pre-wrap;
+      line-height: 1.6;
+    }
+  }
+}
+
+
+.recipe-show__rating {
+  margin-top: 2rem;
+  text-align: center;
+
+  .star-rating {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    font-size: 2.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.25rem;
+    margin-bottom: 1rem;
+
+    input[type="radio"] {
+      display: none;
+    }
+
+    label.star {
+      color: #ccc;
+      cursor: pointer;
+      transition: color 0.2s;
+
+      &:hover,
+      &:hover ~ label.star {
+        color: #ffcc00;
+      }
+    }
+
+    input[type="radio"]:checked ~ label.star {
+      color: #ffcc00;
+    }
+  }
+
+  .btn-submit-rating {
+    margin-top: 1rem;
+    display: inline-block;
+  }
+}
+
+
+.recipe-show__info,
+.recipe-show__section,
+.recipe-show__rating {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}

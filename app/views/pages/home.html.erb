@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe App - Welcome</title>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body class="home-page">
+  <div class="page-wrapper">
+    <main class="home-page__main">
+      <section class="home-page__welcome-section">
+        <h2 class="home-page__welcome-title">Welcome to Chefie!</h2>
+        <p class="home-page__welcome-text">
+          Discover delicious recipes and cooking tips! Share your experiences and learn new things!
+        </p>
+        <p class="home-page__callout"><strong>To access recipes, please sign up or log in:</strong></p>
+
+        <div class="home-page__auth-links">
+          <%= link_to "Sign Up", new_user_registration_path, class: "home-page__button" %>
+          <%= link_to "Log In", new_user_session_path, class: "home-page__button" %>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<div class="index-community-page-container">
+  <div class="community-page__nav-buttons">
+    <%= link_to dashboard_index_path, class: "custom-back-btn-link" do %>
+      <span class="custom-btn-inner">← Back</span>
+    <% end %>
+  </div>
+
+  <h1 class="community-page__title">Community</h1>
+  <h2 class="community-page__subtitle">Explore the Community, join threads have fun!</h2>
+
+  <% if @communities.any? %>
+    <div class="community-page__grid">
+      <% @communities.each do |c| %>
+        <div class="community-card community-page__card" data-aos="fade-up">
+          <h2 class="community-card__title">
+            <%= link_to c.title, community_path(c), class: "community-card__link" %>
+          </h2>
+          <p class="community-card__description">
+            <%= truncate(c.description, length: 100) %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="community-page__empty-message">No communities yet.</p>
+  <% end %>
+
+  <%= link_to "New Community", new_community_path, class: "community-page__btn community-page__btn--primary" %>
+</div>

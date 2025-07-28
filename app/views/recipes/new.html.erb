@@ -1,0 +1,54 @@
+<div class="new-recipe-container">
+  <div class="new-recipe-back-aligner">
+    <%= link_to recipes_path, class: "custom-back-btn-link" do %>
+      <span class="custom-btn-inner">← Back</span>
+    <% end %>
+  </div>
+
+  <div class="new-recipe-page">
+    <h1 class="new-recipe-page__title">Create a New Recipe</h1>
+
+    <%= form_with model: @recipe, local: true, html: { class: "new-recipe-form" } do |f| %>
+      <div class="new-recipe-form__group">
+        <%= f.label :title, class: "new-recipe-form__label" %>
+        <%= f.text_field :title, placeholder: "Delicious Cake", required: true, class: "new-recipe-form__input" %>
+      </div>
+
+      <div class="new-recipe-form__group">
+        <%= f.label :category, class: "new-recipe-form__label" %>
+        <div class="select-wrapper">
+          <%= f.select :category, options_for_select(["Pizza", "Dessert", "Salad", "Cocktails", "Noodle", "Pasta"], selected: @recipe.category), { include_blank: "Select a category" }, { class: "new-recipe-form__select" } %>
+        </div>
+      </div>
+
+      <div class="new-recipe-form__group">
+        <%= f.label :description, class: "new-recipe-form__label" %>
+        <%= f.text_area :description, rows: 3, placeholder: "A quick summary of the recipe...", class: "new-recipe-form__textarea" %>
+      </div>
+
+      <div class="new-recipe-form__group">
+        <%= f.label :prep_time, class: "new-recipe-form__label" %>
+        <%= f.text_field :prep_time, placeholder: "30 mins", class: "new-recipe-form__input" %>
+      </div>
+
+      <div class="new-recipe-form__group">
+        <%= f.label :ingredients, class: "new-recipe-form__label" %>
+        <%= f.text_area :ingredients, rows: 3, placeholder: "Flour, Eggs, Sugar...", class: "new-recipe-form__textarea" %>
+      </div>
+
+      <div class="new-recipe-form__group">
+        <%= f.label :instructions, class: "new-recipe-form__label" %>
+        <%= f.text_area :instructions, rows: 6, placeholder: "Step by step...", class: "new-recipe-form__textarea" %>
+      </div>
+
+      <div class="new-recipe-form__group">
+        <%= f.label :image, class: "new-recipe-form__label" %>
+        <%= f.file_field :image, class: "new-recipe-form__file" %>
+      </div>
+
+      <div class="new-recipe-form__actions">
+        <%= f.submit "Create Recipe", class: "new-recipe-form__btn" %>
+      </div>
+    <% end %>
+  </div>
+</div>

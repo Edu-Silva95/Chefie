@@ -1,0 +1,68 @@
+<div class="recipe-show">
+  <div class="recipe-show__header">
+  <div class="show_course__back-wrapper">
+    <%= link_to recipes_path, class: "custom-back-btn-link custom-back-btn-link--full-two" do %>
+      <span>← Back to All Recipes</span>
+    <% end %>
+  </div>
+    <div class="recipe-show__average-rating">
+      <strong>Average Rating:</strong>
+      <%= @recipe.average_rating %> / 5
+    </div>
+
+    <h1 class="recipe-show__title"><%= @recipe.title %></h1>
+    <p class="recipe-show__author">By <%= @recipe.user.username %></p>
+  </div>
+
+  <div class="recipe-show__image-wrapper">
+    <% if @recipe.image.attached? %>
+      <%= image_tag @recipe.image, alt: "Image for #{@recipe.title}", class: "recipe-show__image" %>
+    <% else %>
+      <%= image_tag "placeholder.jpg", alt: "No image available", class: "recipe-show__image" %>
+    <% end %>
+  </div>
+
+  <div class="recipe-show__info">
+    <p><strong>Category:</strong> <%= @recipe.category %></p>
+    <p><strong>Preparation Time:</strong> <%= @recipe.prep_time.presence || "Not specified" %></p>
+  </div>
+
+  <div class="recipe-show__section">
+    <h2>Ingredients</h2>
+    <p><%= simple_format(@recipe.ingredients) %></p>
+  </div>
+
+  <div class="recipe-show__section">
+    <h2>Instructions</h2>
+    <p><%= simple_format(@recipe.instructions) %></p>
+  </div>
+
+  <div class="recipe-show__rating">
+    <h2>Rate this Recipe</h2>
+
+    <% if @user_rating.present? %>
+    <p>You rated this recipe: <%= @user_rating %> ★</p>
+    <% else %>
+      <form action="<%= recipe_ratings_path(@recipe) %>" method="post">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+        <div class="star-rating">
+          <% 5.downto(1) do |star| %>
+            <input
+              type="radio"
+              id="star-<%= star %>"
+              name="rating[value]"
+              value="<%= star %>"
+            >
+            <label class="star" for="star-<%= star %>">&#9733;</label>
+          <% end %>
+        </div>
+
+      <button type="submit" class="btn-submit-rating">
+        <span class="shadow"></span>
+        <span class="edge"></span>
+        <span class="front text">Submit Rating</span>
+      </button>      </form>
+    <% end %>
+  </div>
+</div>

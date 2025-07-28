@@ -1,0 +1,4 @@
+$("#likes-count-<%= @post.id %>").text("<%= @post.reload.likes_count %> Likes");
+$("#post-<%= @post.id %> .like-button").replaceWith(
+  '<%= j button_to("Like", like_post_path(@post), method: :post, remote: true, class: "btn btn-sm btn-primary like-button") %>'
+);

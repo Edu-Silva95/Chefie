@@ -1,0 +1,20 @@
+<div class="topic-form">
+  <h1 class="topic-form__title">Start a New Topic</h1>
+
+  <%= form_with model: [@community, @topic], local: true, html: { class: "topic-form__form" } do |f| %>
+    <div class="topic-form__group">
+      <%= f.label :title, "Title", class: "topic-form__label" %>
+      <%= f.text_field :title, class: "topic-form__input", placeholder: "Enter your topic title", required: true %>
+    </div>
+
+    <div class="topic-form__group">
+      <%= f.label :content, "Content", class: "topic-form__label" %>
+      <%= f.text_area :content, class: "topic-form__textarea", placeholder: "Write your topic content...", rows: 6, required: true %>
+    </div>
+
+    <div class="topic-form__actions">
+      <%= f.submit "Create Topic", class: "topic-form__submit" %>
+      <%= link_to "← Back to Community", community_path(@community), class: "topic-form__back" %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,314 @@
+// Back button
+
+.custom-back-btn-link {
+  position: relative;
+  font-size: 1.3rem;
+  font-weight: 600;
+  padding: 10px 10px;
+  color: $color-secondary-dark;
+  background-color: transparent;
+  border: 2px solid $color-secondary-dark;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.custom-back-btn-link::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: $color-secondary-dark;
+  top: 0%;
+  left: -100%;
+  scale: 1;
+  border-radius: inherit;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 0;
+}
+
+.custom-back-btn-link span {
+  transition: all 0.7s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.custom-back-btn-link span::before {
+  content: '← Back';
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: $color-tertiary-light;
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  z-index: 1;
+  transition: width 0.3s ease;
+}
+
+.custom-back-btn-link:hover span::before {
+  width: 100%;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  transition-delay: 0.4s;
+}
+
+.custom-back-btn-link:hover::before {
+  top: 0%;
+  left: 0%;
+}
+
+.custom-back-btn-link:hover {
+  border-color: transparent;
+}
+
+.custom-back-btn-link:active {
+  scale: 0.9;
+}
+
+// For aligning the back button in the bar on the new recipe page
+.new-recipe-back-aligner {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+// For aligning the back button in the bar on the courses page
+.courses-page-body .custom-back-btn-link {
+  margin-left: 1rem;
+}
+
+// Correct style for the back to communities button in the community show page
+.custom-back-btn-link--full span::before {
+  content: none !important;
+  color: $color-secondary-dark;
+}
+
+.custom-back-btn-link--full span {
+  position: relative;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.custom-back-btn-link--full:hover span {
+  color: $color-tertiary-light;
+}
+
+// Correct style for the back to all courses button in the course show page
+.custom-back-btn-link--full-two span::before {
+  content: none !important;
+  color: $color-secondary-dark;
+}
+
+.custom-back-btn-link--full-two span {
+  position: relative;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.custom-back-btn-link--full-two:hover span {
+  color: $color-tertiary-light;
+}
+
+.show_course__back-wrapper {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+
+// Correct style for the back to all recipes button in the recipes show page
+.custom-back-btn-link--full-three span::before {
+  content: none !important;
+  color: $color-secondary-dark;
+}
+
+.custom-back-btn-link--full-three span {
+  position: relative;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.custom-back-btn-link--full-three:hover span {
+  color: $color-tertiary-light;
+}
+
+.show_recipe__back-wrapper {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+
+// VIEW COURSE BUTTON
+.courses-page__course-card-view-btn {
+  --bg: #8fd19e;
+  --text-color: #fff;
+  position: relative;
+  width: 9rem;
+  display: inline-block;
+  text-align: center;
+  border: none;
+  background: var(--bg);
+  color: var(--text-color);
+  padding: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: 0.2s;
+  border-radius: 5px;
+  opacity: 0.8;
+  letter-spacing: 1px;
+  box-shadow: #28b485 0px 7px 2px, #000 0px 8px 5px;
+  text-decoration: none;
+  margin-top: -1rem;
+}
+
+.courses-page__course-card-view-btn:hover {
+  opacity: 1;
+}
+
+.courses-page__course-card-view-btn:active {
+  top: 4px;
+  box-shadow: #28b485 0px 3px 2px, #000 0px 3px 5px;
+}
+
+
+// SUBMIT RATING BUTTON
+.btn-submit-rating {
+  position: relative;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+  transition: filter 250ms;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.btn-submit-rating .shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.25);
+  will-change: transform;
+  transform: translateY(2px);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+}
+
+.btn-submit-rating .edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: linear-gradient(
+    to left,
+    hsl(39, 94%, 30%) 0%,
+    hsl(39, 94%, 45%) 8%,
+    hsl(39, 94%, 45%) 92%,
+    hsl(39, 94%, 30%) 100%
+  );
+}
+
+.btn-submit-rating .front {
+  display: block;
+  position: relative;
+  padding: 12px 27px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: white;
+  background: $color-button;
+  will-change: transform;
+  transform: translateY(-4px);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+}
+
+.btn-submit-rating:hover {
+  filter: brightness(110%);
+}
+
+.btn-submit-rating:hover .front {
+  transform: translateY(-6px);
+  transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+}
+
+.btn-submit-rating:active .front {
+  transform: translateY(-2px);
+  transition: transform 34ms;
+}
+
+.btn-submit-rating:hover .shadow {
+  transform: translateY(4px);
+  transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+}
+
+.btn-submit-rating:active .shadow {
+  transform: translateY(1px);
+  transition: transform 34ms;
+}
+
+.btn-submit-rating:focus:not(:focus-visible) {
+  outline: none;
+}
+
+
+// X delete button for the cards (courses page)
+
+.courses-page__course-card-delete-wrapper {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+}
+
+.courses-page__course-card-delete-x {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #dc3545;
+  cursor: pointer;
+  font-weight: bold;
+  line-height: 1;
+  padding: 0;
+}
+
+.courses-page__course-card-delete-x:hover {
+  color: #a71d2a;
+}
+
+
+// X delete button for the cards (favorites page)
+
+.favorites-page__card-delete-wrapper {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+}
+
+.favorites-page__card-delete-x {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #dc3545;
+  cursor: pointer;
+  font-weight: bold;
+  line-height: 1;
+  padding: 0;
+}
+
+.favorites-page__card-delete-x:hover {
+  color: #a71d2a;
+}
+
+.favorites-page__card-delete-form {
+  display: inline;
+}

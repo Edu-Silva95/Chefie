@@ -1,0 +1,131 @@
+<div class="topic-show__nav">
+  <%= link_to communities_path, class: "custom-back-btn-link custom-back-btn-link--full" do %>
+    <span>← Back to Communities</span>
+  <% end %>
+
+  <%= link_to "🏠 Home", dashboard_path, class: "topic-show__btn topic-show__btn--home" %>
+</div>
+
+<div class="topic-show__container">
+  <div class="topic-show__original-post">
+    <div class="original-post-card">
+      <div class="original-post-grid">
+        <div class="original-post-main">
+
+          <p class="topic-show__meta">
+            <% if @topic.user.avatar.attached? %>
+              <%= image_tag @topic.user.avatar.variant(resize_to_fill: [32, 32]), class: "topic-show__avatar" %>
+            <% else %>
+              <%= image_tag "avatar.png", class: "topic-show__avatar" %>
+            <% end %>
+            <span class="topic-show__user"><%= @topic.user.username %></span>
+            <%= @topic.created_at.strftime("%-d %b @ %-l:%M%P") %>
+          </p>
+
+          <h1 class="topic-show__title"><%= @topic.title %></h1>
+
+          <div class="topic-show__content">
+            <%= simple_format(@topic.content) %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Sidebar container wrapping both info and more discussions -->
+    <div class="original-post-sidebar">
+      <div class="original-post-info">
+        <p><strong>Date Posted:</strong><br>
+          <%= @topic.created_at.strftime("%-d %B %Y") %>
+        </p>
+        <p><strong>Posts:</strong><br>
+          <%= @topic.user.topics.count %>
+        </p>
+      </div>
+
+      <div class="more-discussions">
+        <h4>More discussions</h4>
+        <% if @more_topics.any? %>
+          <ul class="more-discussions-list">
+            <% @more_topics.each do |topic| %>
+              <li>
+                <%= link_to truncate(topic.title, length: 50), community_topic_path(topic.community, topic), class: "more-discussion-link" %>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p>No other discussions by this user.</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-show__replies">
+    <h3 class="topic-show__subtitle">Comments</h3>
+    <% @replies.each do |r| %>
+      <div class="reply-card">
+        <small class="reply-card__timestamp">
+          <%= r.created_at.strftime("%b %d, %Y at %H:%M") %>
+        </small>
+
+        <small class="reply-card__meta">
+          <span class="reply-card__user">
+            <% if r.user.avatar.attached? %>
+              <%= image_tag r.user.avatar.variant(resize_to_fill: [32, 32]), class: "reply-card__avatar" %>
+            <% else %>
+              <%= image_tag "avatar.png", class: "reply-card__avatar" %>
+            <% end %>
+            <%= r.user.username %>
+          </span>
+        </small>
+
+        <div class="reply-card__content">
+          <%= simple_format(r.content) %>
+        </div>
+
+        <% if user_signed_in? %>
+          <div class="reply-card__likes">
+            <% if r.reply_likes.exists?(user: current_user) %>
+              <%= button_to "❤️ Unlike (#{r.reply_likes.count})", community_topic_reply_like_path(@topic.community, @topic, r), method: :delete, class: "btn-like" %>
+            <% else %>
+              <%= button_to "🤍 Like (#{r.reply_likes.count})", community_topic_reply_like_path(@topic.community, @topic, r), method: :post, class: "btn-like" %>
+            <% end %>
+          </div>
+        <% else %>
+          <p class="reply-card__likes"><%= pluralize(r.reply_likes.count, 'like') %></p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="topic-show__new-reply">
+    <h3 class="topic-show__subtitle">Reply</h3>
+    <% if user_signed_in? %>
+      <%= form_with model: [@topic.community, @topic, Reply.new], local: true do |f| %>
+        <%= f.text_area :content, placeholder: "Type your reply", rows: 3, required: true, class: "topic-show__textarea", id: "reply-textarea" %>
+
+        <div class="submit-button-wrapper" id="submit-button-wrapper" style="display: none;">
+          <%= f.submit "Post Reply", class: "topic-show__submit" %>
+        </div>
+      <% end %>
+    <% else %>
+      <p>Please <%= link_to "sign in", new_user_session_path, class: "topic-show__link" %> to reply.</p>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("turbo:load", () => {
+    const textarea = document.getElementById("reply-textarea");
+    const submitWrapper = document.getElementById("submit-button-wrapper");
+
+    if (!textarea || !submitWrapper) return;
+
+    textarea.addEventListener("input", () => {
+      if (textarea.value.trim().length > 0) {
+        submitWrapper.style.display = "block";
+      } else {
+        submitWrapper.style.display = "none";
+      }
+    });
+  });
+</script>

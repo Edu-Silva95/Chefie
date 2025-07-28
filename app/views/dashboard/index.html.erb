@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;600&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+  <title>Recipe App - Dashboard</title>
+
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2 id="title">Chefie</h2>
+      <div class="user-profile" data-controller="user-dropdown">
+        <% if current_user.avatar.attached? %>
+          <%= image_tag url_for(current_user.avatar.variant(resize_to_limit: [128, 128])), alt: "#{current_user.username}'s avatar", class: "user-profile__avatar" %>
+        <% else %>
+          <%= image_tag "avatar.png", alt: "Default avatar", class: "user-profile__avatar" %>
+        <% end %>
+
+        <h2 class="user-profile__name" data-action="click->user-dropdown#toggle" style="cursor: pointer;">
+          <%= current_user.username %> ▾
+        </h2>
+
+        <ul data-user-dropdown-target="menu" class="user-profile__menu dropdown-menu hidden">
+          <li><%= link_to "Settings", edit_user_registration_path %></li>
+          <li><%= link_to "Log Out", destroy_user_session_path, method: :delete, data: { turbo: false } %></li>
+        </ul>
+      </div>
+
+      <!-- Sidebar nav -->
+      <nav class="sidebar-nav">
+        <%= link_to "Recipes",    recipes_path,    class: (current_page?(recipes_path)    ? "active" : "") %>
+        <%= link_to "Favorites",  favorites_path,  class: (current_page?(favorites_path)  ? "active" : "") %>
+        <%= link_to "Courses",    courses_path,    class: (current_page?(courses_path)    ? "active" : "") %>
+        <%= link_to "Community",  communities_index_path, class: (current_page?(communities_index_path) ? "active" : "") %>
+      </nav>
+
+      <div class="sidebar__bottom-image">
+        <%= image_tag "chef.png", alt: "Chefie Decoration", class: "sidebar__image" %>
+      </div>
+
+    </aside>
+
+    <div class="main-area">
+      <!-- Top bar with search & stats -->
+      <header class="top-bar">
+        <div class="search">
+          <%= form_with url: recipes_path, method: :get, local: true do |f| %>
+            <%= f.text_field :query, value: params[:query], placeholder: "Search recipes...", class: "search-bar-input" %>
+          <% end %>
+        </div>
+
+        <div class="stats">
+          <div><strong><%= @video_count %></strong><span> Videos</span></div>
+          <div><strong><%= @recipe_count %></strong><span> Recipes</span></div>
+        </div>
+      </header>
+
+      <!-- Scrollable content window -->
+      <main class="content-window">
+        <h1>Learn, Cook, &amp; Share your recipes!</h1>
+
+        <!-- Categories -->
+       <div class="categories">
+          <% ["Pizza", "Noodle", "Pasta", "Salad", "Dessert", "Cocktails"].each do |cat| %>
+            <%= link_to cat, category_path(cat), class: "category-pill #{'active' if params[:name] == cat}" %>
+          <% end %>
+        </div>
+
+        <!-- Grid  -->
+        <% recipes = Recipe.order("RANDOM()").limit(6) %>
+
+        <section class="cards-grid">
+          <% Recipe.order("RANDOM()").limit(6).each do |recipe| %>
+            <article class="card">
+              <div class="card-image-wrapper">
+                <% if recipe.image.attached? %>
+                  <%= image_tag recipe.image, alt: "Image for #{recipe.title}", class: "card-image" %>
+                <% else %>
+                  <%= image_tag "placeholder.jpg", alt: "No image available", class: "card-image" %>
+                <% end %>
+              </div>
+
+              <h3 class="card-title"><%= recipe.title %></h3>
+
+              <div class="meta">
+                <%= recipe.prep_time.presence || "30 mins" %> •
+                <%= star_rating(recipe.average_rating) %>
+              </div>
+
+              <p class="card-description">
+                <%= truncate(recipe.description, length: 100) %>
+              </p>
+
+              <%= link_to "View Recipe", recipe_path(recipe), class: "btn" %>
+            </article>
+          <% end %>
+        </section>
+
+        <!-- Featured section -->
+        <div id="popup-scroll-anchor"></div>
+
+        <section class="featured">
+          <div class="featured__box">
+            <img src="<%= asset_path('chicken-salad.png') %>" alt="Featured recipe" class="featured__image" />
+            <div class="featured__content">
+              <h2 class="featured__title">Instant Pot Greek Chicken Bowls</h2>
+              <p class="featured__description">
+                The flavors of the Mediterranean are cooked up in 30 minutes… Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              </p>
+              <a href="#popup" class="featured__link" data-turbo="false" onclick="scrollToPopup()">Get The Offer →</a>
+            </div>
+
+            <div id="popup" class="popup">
+              <div class="popup__content">
+                <a href="#" onclick="closePopup(event)" class="popup__close">×</a>
+                <h3>Special Offer</h3>
+                <p>Order now and get 20% off your first order! 🎉</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script>
+   function scrollToPopup() {
+    setTimeout(() => {
+        const popup = document.getElementById("popup");
+        if (popup) {
+          // Get popup's position relative to the viewport + current scroll
+          const rect = popup.getBoundingClientRect();
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+          // Scroll to popup's top minus 20px for some spacing
+          window.scrollTo({
+            top: rect.top + scrollTop - 20,
+            behavior: "smooth"
+          });
+        }
+      }, 100);
+    }
+
+    window.addEventListener("hashchange", () => {
+      if (window.location.hash === "#popup") {
+        scrollToPopup();
+      }
+    });
+
+    function closePopup(event) {
+      event.preventDefault();
+
+      // Remove hash
+      history.pushState(null, document.title, window.location.pathname + window.location.search);
+
+      // Hide popup
+      const popup = document.getElementById("popup");
+      popup.classList.add("popup--hidden");
+    }
+
+    window.addEventListener("load", () => {
+      const popup = document.getElementById("popup");
+      if (window.location.hash === "#popup") {
+        popup.classList.remove("popup--hidden");
+      } else {
+        popup.classList.add("popup--hidden");
+      }
+    });
+
+    window.addEventListener("hashchange", () => {
+      const popup = document.getElementById("popup");
+      if (window.location.hash === "#popup") {
+        popup.classList.remove("popup--hidden");
+
+        const anchor = document.getElementById("popup-scroll-anchor");
+        if (anchor) {
+          anchor.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

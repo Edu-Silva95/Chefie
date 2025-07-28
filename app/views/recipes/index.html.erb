@@ -1,0 +1,64 @@
+<div class="background-div">
+  <div class="all-recipes__page">
+
+  <div class="all-recipes__nav-buttons">
+   <%= link_to dashboard_index_path, class: "custom-back-btn-link" do %>
+      <span class="custom-btn-inner">← Back</span>
+    <% end %>
+
+  </div>
+    <h1 class="all-recipes__title">All Recipes</h1>
+    <div class="all-recipes__actions">
+      <%= link_to "➕ Add New Recipe", new_recipe_path, class: "all-recipes__btn all-recipes__btn--new" %>
+    </div>
+
+    <% if @recipes.any? %>
+      <section class="all-recipes__grid">
+        <% @recipes.each do |recipe| %>
+          <article class="all-recipes__card">
+            <div class="all-recipes__card-image-wrapper">
+              <% if recipe.image.attached? %>
+                <%= image_tag recipe.image, alt: "Image for #{recipe.title}", class: "all-recipes__card-image" %>
+              <% else %>
+                <%= image_tag "placeholder.jpg", alt: "Placeholder image", class: "all-recipes__card-image" %>
+              <% end %>
+            </div>
+
+            <h3 class="all-recipes__card-title"><%= recipe.title %></h3>
+            <p class="all-recipes__card-author">By <%= recipe.user.username %></p>
+
+            <div class="all-recipes__card-meta">
+            <%= recipe.prep_time.presence || "30 mins" %> • <%= star_rating(recipe.average_rating) %>
+            </div>
+
+          <div class="all-recipes__card-actions">
+
+            <%= link_to "View Recipe", recipe_path(recipe), class: "all-recipes__card-btn" %>
+
+            <% if current_user && current_user.favorited_recipes.include?(recipe) %>
+              <%= button_to favorite_path(current_user.favorites.find_by(recipe: recipe)),
+                            method: :delete,
+                            class: "favorite-btn favorite-btn--active",
+                            title: "Unfavorite" do %>
+                ❤️
+              <% end %>
+            <% elsif current_user %>
+              <%= button_to favorites_path(recipe_id: recipe.id),
+                            method: :post,
+                            class: "favorite-btn",
+                            title: "Favorite" do %>
+                🤍
+              <% end %>
+            <% end %>
+          </div>
+          </article>
+        <% end %>
+      </section>
+      <div class="all-recipes__pagination">
+        <%= paginate @recipes %>
+      </div>
+    <% else %>
+      <p>No recipes have been added yet. Be the first to <%= link_to "create one", new_recipe_path %>!</p>
+    <% end %>
+  </div>
+</div>

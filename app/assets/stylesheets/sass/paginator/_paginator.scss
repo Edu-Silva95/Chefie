@@ -1,0 +1,80 @@
+.steam-pagination {
+  margin: 1em 0;
+  text-align: center;
+  font-family: "Arial", sans-serif;
+}
+
+.steam-pagination__list {
+  list-style: none;
+  padding: 0;
+  display: inline-flex;
+  gap: 0.4em;
+  user-select: none;
+  align-items: center;
+}
+
+.steam-pagination__item {
+  display: inline-block;
+  padding: 0.3em 0.8em;
+  border: 1px solid $color-secondary-dark;
+  border-radius: 3px;
+  background-color: $color-secondary-light;
+  color: $color-grey-dark;
+  font-weight: 600;
+  font-size: 0.9em;
+  min-width: 32px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.steam-pagination__link {
+  color: #a0a0a0;
+  text-decoration: none;
+  display: block;
+  user-select: none;
+}
+
+.steam-pagination__link:hover {
+  color: #ffffff;
+  background-color: $color-secondary-dark-hover;
+  border-color: $color-secondary-dark-hover;
+}
+
+.steam-pagination__active {
+  background-color: $color-secondary-light;
+  border-color: $color-secondary-dark;
+  color: $color-secondary-dark-hover;
+  cursor: default;
+}
+
+.steam-pagination__disabled {
+  opacity: 0.4;
+  cursor: default;
+  user-select: none;
+}
+
+.steam-pagination__ellipsis {
+  padding: 0.3em 0.6em;
+  color: #a0a0a0;
+  cursor: default;
+  user-select: none;
+}
+
+.steam-pagination__nav {
+  min-width: auto;
+}
+
+.steam-pagination__item a {
+  color: $color-tertiary-light;
+  text-decoration: none;
+  display: block;
+  user-select: none;
+  padding: 0.3em 0.8em;
+}
+
+.steam-pagination__item a:hover {
+  color: $color-white;
+  background-color: $color-secondary-dark;
+  border-color: #2a475e;
+}

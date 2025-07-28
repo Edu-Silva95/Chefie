@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Chefie App - Search, Share, Learn Recipes!" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="<%= asset_path 'avatar.png' %>" type="image/png">
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="<%= controller.controller_name %> <%= controller.action_name %>" data-controller="aos">
+    <%= yield %>
+
+    <% unless controller_name == "sessions" && action_name == "new" %>
+      <footer class="home-page__footer">
+        <p class="home-page__footer-text">All rights reserved &copy; 2025 Chefie_App</p>
+      </footer>
+     <% end %>
+  </body>
+
+  <% if notice %>
+    <div class="flash notice"><%= notice %></div>
+  <% end %>
+  <% if alert %>
+    <div class="flash alert"><%= alert %></div>
+  <% end %>
+</html>

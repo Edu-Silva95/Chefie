@@ -1,0 +1,248 @@
+.topic-show__container {
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: $color-secondary-light;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.6);
+}
+
+.topic-show__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.topic-show__btn {
+  background-color: #3d4450;
+  color: #c7d5e0;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.topic-show__btn:hover {
+  background-color: #4b5a6a;
+}
+
+.topic-show__header {
+  margin-bottom: 1rem;
+}
+
+.topic-show__title {
+  color: $color-tertiary-light;
+  font-size: 2rem;
+  margin-bottom: 2.25rem;
+  margin-left: 3rem;
+}
+
+.topic-show__meta, .reply-card__meta {
+  color: $color-secondary-dark;
+  font-size: 0.9rem;
+}
+
+.reply-card {
+  position: relative;
+  background-color: $color-secondary-dark;
+  border: 1px solid $color-secondary-dark;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  width: 77%;
+}
+
+.reply-card__timestamp {
+  position: absolute;
+  top: 0.5rem;
+  color: $color-tertiary-light;
+  right: 0.75rem;
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+.reply-card__meta {
+  font-size: 0.8rem;
+  color: #8f98a0;
+  margin-top: 0.5rem;
+}
+
+.reply-card__likes {
+  font-size: 0.85rem;
+  color: #8f98a0;
+  margin-top: 2rem;
+}
+
+.topic-show__textarea {
+  width: 78%;
+  padding: 0.75rem;
+  border-radius: 4px;
+  border: 1px solid #2e3c4f;
+  background-color: $color-secondary-dark;
+  color: $color-tertiary-light;
+  margin-bottom: 0.5rem;
+}
+
+.topic-show__textarea::placeholder {
+  color: $color-tertiary-light;
+  opacity: 1;
+}
+
+.topic-show__submit {
+  background-color: #5c7e10;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.topic-show__submit:hover {
+  background-color: #6ea211;
+}
+
+.topic-show__subtitle {
+  color: $color-secondary-dark;
+  margin-top: 6rem;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.reply-card__content {
+  color: $color-tertiary-light;
+  margin-bottom: 0.5rem;
+  margin-left: 3rem;
+}
+
+.reply-card__meta,
+.reply-card__user {
+  color: $color-tertiary-light;
+}
+
+.reply-card__user {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.reply-card__avatar {
+  flex: 1;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #2e3c4f;
+}
+
+.original-post-card {
+  flex: 1;
+  background: $color-secondary-dark;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+  height: 13rem;
+}
+.original-post-inner {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.topic-show__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: $color-white;
+}
+
+.topic-show__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #2e3c4f;
+}
+
+.topic-show__content {
+  margin-top: 1rem;
+  margin-left: 3rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: $color-tertiary-light;
+}
+
+.original-post-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.original-post-main {
+  flex: 1;
+}
+
+.original-post-info {
+  width: 220px;
+  font-size: 0.8rem;
+  background: $color-secondary-dark;
+  border-radius: 6px;
+  color: $color-tertiary-light;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  margin-top: 1rem;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.topic-show__original-post {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: -8rem;
+}
+
+.reply-form-wrapper {
+  width: 400px;
+}
+
+.submit-button-wrapper {
+  width: 78%;
+  text-align: right;
+  margin-bottom: 1rem;
+  transition: opacity 0.3s ease;
+}
+
+.original-post-sidebar {
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.more-discussions {
+  background: $color-secondary-dark;
+  padding: 1rem;
+  border-radius: 6px;
+  color: $color-tertiary-light;
+}
+
+.more-discussions-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.more-discussions-list li {
+  margin-bottom: 0.5rem;
+}
+
+.more-discussion-link {
+  color: $color-tertiary-light;
+  text-decoration: none;
+}
+
+.more-discussion-link:hover {
+  text-decoration: underline;
+  color: #fff;
+}

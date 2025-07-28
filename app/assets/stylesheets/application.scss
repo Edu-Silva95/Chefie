@@ -1,0 +1,54 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_self
+ */
+
+ @import "sass/abstracts/variables";
+ @import "sass/abstracts/buttons";
+ @import "sass/abstracts/footer";
+
+
+ @import "sass/categories/show_categories.scss";
+
+
+ @import "sass/pages/index";
+ @import "sass/pages/homepage";
+
+
+ @import "sass/recipes/recipes";
+ @import "sass/recipes/show_recipes";
+ @import "sass/recipes/new_recipe";
+
+
+ @import "sass/favorites/favorites";
+
+
+ @import "sass/courses/index_course";
+ @import "sass/courses/show_all";
+ @import "sass/courses/show_courses";
+
+
+ @import "sass/communities/index_community";
+ @import "sass/communities/show_community";
+ @import "sass/communities/new_community";
+
+
+ @import "sass/paginator/paginator";
+
+
+ @import "sass/topics/show_topics";
+
+
+ @import "sass/registrations/edit_user";
+ @import "sass/registrations/new_user";
+ @import "sass/registrations/log_in";

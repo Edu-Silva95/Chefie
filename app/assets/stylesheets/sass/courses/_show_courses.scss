@@ -1,0 +1,248 @@
+.show_course {
+  max-width: 800px;
+  margin: 3rem auto;
+  background-color: $color-grey-light-2;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  font-family: 'Source Sans Pro', sans-serif;
+
+  &__header {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: $color-button;
+  }
+
+  &__back-btn {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: $color-secondary-dark;
+  }
+
+  &__author {
+    font-size: 1rem;
+    color: #666;
+  }
+
+  &__image-wrapper {
+    text-align: center;
+    margin: 2rem 0;
+
+    .show_course__image {
+      width: 50vw;
+      max-width: 300px;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      object-fit: cover;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+
+  &__info {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+
+    p {
+      margin: 0.5rem 0;
+    }
+  }
+
+  &__section {
+    margin-bottom: 2rem;
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.25rem;
+      color: $color-secondary-dark;
+    }
+
+    p {
+      white-space: pre-wrap;
+      line-height: 1.6;
+    }
+  }
+
+  &__description {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    h2 {
+      margin-bottom: 0.5rem;
+      color: $color-secondary-dark;
+    }
+
+    p {
+      margin: 0 auto;
+      max-width: 600px;
+    }
+  }
+
+  &__rating {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+
+    h2 {
+      color: $color-secondary-dark;
+    }
+
+    .star-rating {
+      direction: rtl;
+      unicode-bidi: bidi-override;
+      font-size: 2.5rem;
+      display: inline-flex;
+      justify-content: center;
+      gap: 0.3rem;
+
+      input[type="radio"] {
+        display: none;
+      }
+
+      label.star {
+        color: #ccc;
+        cursor: pointer;
+        padding: 0 0.1rem;
+        transition: color 0.2s;
+
+        &:hover,
+        &:hover ~ label.star {
+          color: #ffcc00;
+        }
+      }
+
+      input[type="radio"]:checked ~ label.star {
+        color: #ffcc00;
+      }
+    }
+  }
+}
+
+.rating-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 320px;
+  margin: 1.5rem 0 0 0;
+  text-align: center;
+}
+
+.btn-submit-rating {
+  position: relative;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+  transition: filter 250ms;
+  user-select: none;
+  touch-action: manipulation;
+
+  .shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.25);
+    will-change: transform;
+    transform: translateY(2px);
+    transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
+  }
+
+  .edge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: linear-gradient(
+      to left,
+      #c77e1e 0%,
+      #f7ae30 8%,
+      #f7ae30 92%,
+      #c77e1e 100%
+    );
+  }
+
+  .front {
+    display: block;
+    position: relative;
+    padding: 12px 27px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+    background: #f7ae30;
+    will-change: transform;
+    transform: translateY(-4px);
+    transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
+  }
+
+  &:hover {
+    filter: brightness(110%);
+  }
+
+  &:hover .front {
+    transform: translateY(-6px);
+    transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+  }
+
+  &:active .front {
+    transform: translateY(-2px);
+    transition: transform 34ms;
+  }
+
+  &:hover .shadow {
+    transform: translateY(4px);
+    transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+  }
+
+  &:active .shadow {
+    transform: translateY(1px);
+    transition: transform 34ms;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+.show_course__video-wrapper {
+  margin: 2rem 0;
+
+  iframe {
+    width: 100%;
+    max-width: 640px;
+    height: 360px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  }
+}

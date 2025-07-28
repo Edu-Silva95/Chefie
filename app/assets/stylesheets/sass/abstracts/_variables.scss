@@ -1,0 +1,35 @@
+//COLORS
+$color-primary: #8fd19e;
+$color-primary-light: rgb(126, 213, 111);
+$color-primary-dark: #28b485;
+
+$color-secondary-lighter: rgb(201, 188, 171);
+$color-secondary-light: rgb(215, 187, 152);
+$color-secondary-dark: rgb(162, 127, 84);
+$color-secondary-dark-hover: darken($color-secondary-dark, 10%);
+
+
+$color-tertiary-light: rgb(246, 229, 209);
+$color-tertiary-dark: #5643fa;
+
+$color-grey-light-1: #dcdcdc;
+$color-grey-light-2: #eee9e6;
+
+
+$color-grey-dark:#777;
+$color-grey-dark-2: #999;
+$color-grey-dark-3: #333;
+
+$color-white:#fff;
+$color-black:#000;
+
+$color-button:#f7ae30;
+
+
+//FONT
+$font-body:    'Source Sans Pro', sans-serif !default;
+$font-heading: 'Cormorant', serif           !default;
+
+$font-title:   'Dancing Script',    cursive !default;
+
+$default-font-size: 1.6rem;
