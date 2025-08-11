@@ -13,7 +13,7 @@ Many features included, here are a few:
 * Feed system.
 * Topics/Discussions.
 * Favorite fucntionality.
-* Search fucntionality
+* Search functionality
 
 And more!
 
