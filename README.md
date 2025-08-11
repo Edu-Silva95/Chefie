@@ -1,24 +1,20 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is my second solo project as a junior developer, created to try and use cleaner code I learnt from the courses I attended. Designed and coded by me.
+It's a recipe web-site where people can create an account, share recipes, share videos/courses teaching recipes.
+Many features included, here are a few:
 
-Things you may want to cover:
+* Create Account, change password, delete account.
+* Like functionality.
+* Comment functionality.
+* Share recipes and video/courses which can also be deleted by the user that made the post.
+* Report functionality.
+* Change the user picture.
+* Feed system.
+* Topics/Discussions.
+* Favorite fucntionality.
+* Search fucntionality
 
-* Ruby version
+And more!
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Thank you!
