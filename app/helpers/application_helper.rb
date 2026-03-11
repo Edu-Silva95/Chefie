@@ -1,4 +1,32 @@
 module ApplicationHelper
+  def flash_toast_variant(type, message)
+    key = type.to_s
+    text = message.to_s.downcase
+
+    return "danger" if %w[alert error].include?(key)
+
+    # Devise logout + account cancellation typically come through as :notice.
+    # Also treat deletion-related notices as danger to match the requested UX.
+    danger_keywords = [
+      "signed out",
+      "log out",
+      "logged out",
+      "bye",
+      "deleted",
+      "destroyed",
+      "cancelled",
+      "canceled"
+    ]
+
+    return "danger" if danger_keywords.any? { |kw| text.include?(kw) }
+
+    "success"
+  end
+
+  def flash_toast_class(type, message)
+    "flash-toast flash-toast--#{flash_toast_variant(type, message)}"
+  end
+
   def extract_youtube_id(url)
     return nil if url.blank?
 

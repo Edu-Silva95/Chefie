@@ -1,12 +1,20 @@
 # Clear previous data
+ReplyLike.destroy_all
+Reply.destroy_all
+Post.destroy_all
+Topic.destroy_all
 Favorite.destroy_all
+Like.destroy_all
+Rating.destroy_all
 Recipe.destroy_all
+Course.destroy_all
+Community.destroy_all
 User.destroy_all
 
 # Create users
 users = [
-  User.create!(email: "chef1@example.com", password: "password", username: "ChefOne"),
-  User.create!(email: "chef2@example.com", password: "password", username: "ChefTwo")
+  User.create!(email: "chef1@example.com", password: "password", username: "Chef Gordon"),
+  User.create!(email: "chef2@example.com", password: "password", username: "Chef Josh")
 ]
 
 # Categories and some sample titles
@@ -61,7 +69,7 @@ recipes_data = [
   },
   {
     title: "Pesto Pasta",
-    category: "Noodle",
+    category: "Pasta",
     description: "Linguine tossed in a homemade basil pesto sauce.",
     ingredients: "Linguine, basil, garlic, pine nuts, parmesan, olive oil, salt",
     instructions: "1. Blend basil, garlic, pine nuts, and cheese with olive oil. 2. Cook pasta and toss with pesto. 3. Serve warm.",
@@ -93,14 +101,38 @@ recipes_data = [
   }
 ]
 
+image_map = {
+  "Greek Salad" => "Greek_Salad.png",
+  "Pesto Pasta" => "Pesto_Pasta.png",
+  "Pepperoni Pizza" => "Pepperoni_Pizza.png",
+  "Strawberry Daiquiri" => "Strawberry_Daquiri.png",
+  "Caesar Salad" => "Caesar_Salad.png",
+  "Tiramisu" => "Tiramisu.png",
+  "Margherita Pizza" => "Margherita_Pizza.png",
+  "Chocolate Lava Cake" => "Chocolate_Lava_Cake.png",
+  "Spicy Ramen" => "Spicy_Ramen.png",
+  "Mojito" => "Mojito.png"
+}
+
 # Create recipes, assigning each to a random user
 recipes_data.each do |data|
-  Recipe.create!(
+  recipe = Recipe.create!(
     title: data[:title],
     description: data[:description],
     category: data[:category],
+    ingredients: data[:ingredients],
+    instructions: data[:instructions],
+    prep_time: data[:prep_time],
     user: users.sample
   )
+
+  filename = image_map[recipe.title]
+  next unless filename
+
+  image_path = Rails.root.join("app/assets/images", filename)
+  next unless File.exist?(image_path)
+
+  recipe.image.attach(io: File.open(image_path), filename: filename)
 end
 
 puts "✅ Seeded #{User.count} users and #{Recipe.count} recipes."

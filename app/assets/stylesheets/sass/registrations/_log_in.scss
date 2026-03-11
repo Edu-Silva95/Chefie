@@ -1,5 +1,6 @@
 .login-page-wrapper {
   max-width: 700px;
+  width: 100%;
   margin: 4rem auto;
   padding: 3rem 2rem;
   background-color: $color-grey-light-2;
@@ -62,4 +63,22 @@
 
 .login-form__submit-btn:hover {
   background-color: #ff9966;
+}
+
+@media (max-width: 600px) {
+  .login-page-wrapper {
+    margin: 2rem auto;
+    padding: 1.5rem 1rem;
+    border-radius: 10px;
+  }
+
+  .login-page__title {
+    font-size: 1.6rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .login-form__submit-btn {
+    width: 100%;
+    padding: 0.75rem 1rem;
+  }
 }

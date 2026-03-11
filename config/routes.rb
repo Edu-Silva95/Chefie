@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get "categories/show"
-  devise_for :users
+  devise_for :users, controllers: { registrations: "users/registrations" }
 
   root "pages#home"
 
@@ -15,50 +15,50 @@ Rails.application.routes.draw do
   get "dashboard/index"
   get "pages/home"
 
-  get 'dashboard', to: 'dashboard#index'
+  get "dashboard", to: "dashboard#index"
   get "/profile", to: "users#show", as: :profile
   get "categories/:name", to: "categories#show", as: :category
 
-  get 'courses/show_all', to: 'courses#show_all', as: :all_courses
+  get "courses/show_all", to: "courses#show_all", as: :all_courses
 
   get "up" => "rails/health#show", as: :rails_health_check
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
-  resources :recipes, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
-    resources :ratings, only: [:create]
+  resources :recipes, only: [ :index, :show, :new, :create, :edit, :update, :destroy ] do
+    resources :ratings, only: [ :create ]
   end
 
-  resources :favorites, only: [:index, :create, :destroy]
+  resources :favorites, only: [ :index, :create, :destroy ]
 
-  resources :courses, only: [:index, :show, :create, :edit, :update, :destroy] do
-  resources :ratings, only: [:create]
+  resources :courses, only: [ :index, :show, :create, :edit, :update, :destroy ] do
+  resources :ratings, only: [ :create ]
 
   collection do
     get :show_all
   end
 
   member do
-    get 'like', to: 'courses#like'
-    get 'unlike', to: 'courses#unlike'
+    get "like", to: "courses#like"
+    get "unlike", to: "courses#unlike"
   end
 end
 
-  resources :posts, only: [:create, :destroy] do
+  resources :posts, only: [ :create, :destroy ] do
     member do
       get :like
       get :unlike
     end
   end
 
-  resources :communities, only: [:index, :show, :new, :create] do
+  resources :communities, only: [ :index, :show, :new, :create ] do
     collection do
       get :search
     end
 
-    resources :topics, only: [:create, :show, :new] do
-      resources :replies, only: [:create] do
-        resource :like, only: [:create, :destroy], controller: "reply_likes"
+    resources :topics, only: [ :create, :show, :new ] do
+      resources :replies, only: [ :create ] do
+        resource :like, only: [ :create, :destroy ], controller: "reply_likes"
       end
     end
   end

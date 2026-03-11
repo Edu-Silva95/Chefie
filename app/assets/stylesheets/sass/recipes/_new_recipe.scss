@@ -49,11 +49,12 @@
 
 .new-recipe-form__input,
 .new-recipe-form__textarea {
-  width: 95%;
+  width: 100%;
   padding: 0.75rem;
   font-size: 1rem;
   border-radius: 6px;
   border: 1px solid #ccc;
+  box-sizing: border-box;
 }
 
 .new-recipe-form__file {
@@ -88,12 +89,13 @@
 }
 
 .new-recipe-form__select {
-  width: 99%;
+  width: 100%;
   padding: 0.75rem 2.5rem 0.75rem 1rem;
   font-size: 1rem;
   border-radius: 8px;
   border: 1.5px solid #ccc;
   background-color: white;
+  box-sizing: border-box;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -118,4 +120,44 @@
   background-image: url("data:image/svg+xml,%3Csvg fill='%23666' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-size: contain;
+}
+
+@media (max-width: 900px) {
+  .new-recipe-container {
+    padding: 1.5rem;
+  }
+
+  .new-recipe-page {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .new-recipe-container {
+    margin: 1rem auto;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  .new-recipe-page {
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  .new-recipe-page__title {
+    font-size: 1.7rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .new-recipe-form__label {
+    font-size: 1.05rem;
+  }
+
+  .new-recipe-form__actions {
+    justify-content: center;
+  }
+
+  .new-recipe-form__btn {
+    width: 100%;
+  }
 }

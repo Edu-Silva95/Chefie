@@ -18,19 +18,16 @@
   </head>
 
   <body class="<%= controller.controller_name %> <%= controller.action_name %>" data-controller="aos">
-    <%= yield %>
+    <main class="app-main">
+      <%= yield %>
+    </main>
+
+    <%= render "shared/flash" %>
 
     <% unless controller_name == "sessions" && action_name == "new" %>
       <footer class="home-page__footer">
-        <p class="home-page__footer-text">All rights reserved &copy; 2025 Chefie_App</p>
+        <p class="home-page__footer-text">All rights reserved &copy; 2026 Chefie_App</p>
       </footer>
      <% end %>
   </body>
-
-  <% if notice %>
-    <div class="flash notice"><%= notice %></div>
-  <% end %>
-  <% if alert %>
-    <div class="flash alert"><%= alert %></div>
-  <% end %>
 </html>

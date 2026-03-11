@@ -1,5 +1,6 @@
 .index-community-page-container {
-  width: 83rem;
+  width: 100%;
+  max-width: 83rem;
   margin: 0 auto;
   padding: 2rem 1rem;
   background: $color-grey-light-2;
@@ -115,4 +116,36 @@
   color: #555;
   line-height: 1.5;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+@media (max-width: 900px) {
+  .community-page__grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+    padding: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .index-community-page-container {
+    padding: 1.25rem 0.75rem;
+  }
+
+  .community-page__title {
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .community-page__subtitle {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .community-card {
+    padding: 1.25rem 1.25rem;
+  }
+
+  .community-page__btn--primary {
+    margin-top: 2.5rem;
+  }
 }

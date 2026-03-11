@@ -2,11 +2,11 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
   has_many :ratings, dependent: :destroy
-  has_many :communities
-  has_many :topics
+  has_many :communities, dependent: :destroy
+  has_many :topics, dependent: :destroy
   has_many :courses, dependent: :destroy
   has_many :posts, dependent: :destroy
-  has_many :recipes
+  has_many :recipes, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorited_recipes, through: :favorites, source: :recipe
   has_many :likes, dependent: :destroy

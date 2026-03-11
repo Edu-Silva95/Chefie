@@ -29,8 +29,34 @@
   padding: 0.5rem;
   border: 1px solid $color-secondary-dark;
   border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.search-container .search-form,
+.search-container .search-input-wrapper {
   display: flex;
   gap: 0.5rem;
+  width: 100%;
+}
+
+.search-container .search-input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.6rem;
+  background-color: $color-secondary-dark;
+  border: 1px solid $color-secondary-dark;
+  border-radius: 4px;
+  color: $color-tertiary-light;
+  box-sizing: border-box;
+}
+
+.search-container .search-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  flex: 0 0 auto;
 }
 
 .search-container input[type="text"] {
@@ -279,6 +305,80 @@
   padding: 0;
 }
 
+@media (max-width: 900px) {
+  .community-page-container {
+    padding: 1.5rem;
+  }
+
+  .community-wrapper {
+    padding: 1.5rem;
+  }
+
+  .community-layout {
+    flex-direction: column;
+  }
+
+  .community-main,
+  .community-sidebar {
+    width: 100%;
+  }
+
+  .topics-heading {
+    font-size: 2.25rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .new-topic-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .community-page-container {
+    padding: 1rem;
+    margin: 1rem auto;
+    border-radius: 8px;
+  }
+
+  .community-wrapper {
+    padding: 1rem 0.5rem;
+  }
+
+  .community-nav-buttons {
+    flex-wrap: wrap;
+  }
+
+  .topics-heading {
+    font-size: 1.85rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .topics-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .topics-table td,
+  .topics-table th {
+    padding: 10px 12px;
+  }
+
+  .topic-title {
+    min-width: 0;
+    max-width: none;
+    padding-left: 1rem;
+  }
+
+  .topic-row td:first-child {
+    padding-left: 1rem;
+  }
+
+  .topic-meta {
+    padding-left: 2.2rem;
+  }
+}
+
 .breadcrumb-item {
   position: relative;
   font-size: 1.3rem;
@@ -374,7 +474,7 @@
 
     .search-btn {
       position: absolute;
-      right: -2.5rem;
+      right: -1.1rem;
       top: 50%;
       transform: translateY(-50%);
       background: transparent;

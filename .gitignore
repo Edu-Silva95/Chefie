@@ -31,5 +31,9 @@
 
 /public/assets
 
+# Generated CSS build artifacts (we use Sprockets to compile SCSS directly)
+/app/assets/builds/*
+/builds/*
+
 # Ignore master key for decrypting credentials and more.
 /config/master.key

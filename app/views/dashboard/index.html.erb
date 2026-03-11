@@ -109,13 +109,24 @@
         <section class="featured">
           <div class="featured__box">
             <img src="<%= asset_path('chicken-salad.png') %>" alt="Featured recipe" class="featured__image" />
+
             <div class="featured__content">
+              <span class="featured__badge">
+                🔥 Today's Restaurant Pick
+                <small>Sponsored by Mediterranean Grill</small>
+              </span>
               <h2 class="featured__title">Instant Pot Greek Chicken Bowls</h2>
+
               <p class="featured__description">
-                The flavors of the Mediterranean are cooked up in 30 minutes… Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                The flavors of the Mediterranean are cooked up in 30 minutes…
               </p>
-              <a href="#popup" class="featured__link" data-turbo="false" onclick="scrollToPopup()">Get The Offer →</a>
+
+              <a href="#popup" class="featured__link" data-turbo="false" onclick="scrollToPopup()">
+                Order Today's Special →
+              </a>
             </div>
+          </div>
+        </section>
 
             <div id="popup" class="popup">
               <div class="popup__content">

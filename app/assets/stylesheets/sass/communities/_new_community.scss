@@ -99,3 +99,20 @@
     flex: 1;
   }
 }
+
+@media (max-width: 600px) {
+  .page-container {
+    margin: 1.25rem auto;
+    padding: 1.25rem;
+    border-radius: 10px;
+  }
+
+  .form-card__title {
+    font-size: 1.6rem;
+    margin-top: 2rem;
+  }
+
+  .new-community__btn {
+    width: 100%;
+  }
+}
