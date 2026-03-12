@@ -19,11 +19,12 @@
               </div>
 
               <div class="favorites-page__card-image-wrapper">
-                <% if favorite.recipe.image.attached? %>
-                  <%= image_tag favorite.recipe.image, alt: "Image for #{favorite.recipe.title}", class: "favorites-page__card-image" %>
-                <% else %>
-                  <%= image_tag "placeholder.jpg", alt: "Placeholder image", class: "favorites-page__card-image" %>
-                <% end %>
+                <%= safe_attachment_image_tag(
+                      favorite.recipe.image,
+                      fallback: "placeholder.jpg",
+                      alt: "Image for #{favorite.recipe.title}",
+                      class: "favorites-page__card-image"
+                    ) %>
               </div>
 
               <h3 class="favorites-page__card-title"><%= favorite.recipe.title %></h3>

@@ -1,28 +1,40 @@
-# Fly.io app configuration file
-# After running `fly launch`, Fly may adjust this file.
+# fly.toml app configuration file generated for chefie-dry-sound-571 on 2026-03-11T22:46:57Z
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
 
-app = "chefie"
+app = "chefie-dry-sound-571"
 primary_region = "ams"
+console_command = "bin/rails console"
 
 [build]
-  dockerfile = "Dockerfile"
-
-[env]
-  RAILS_ENV = "production"
-  RAILS_SERVE_STATIC_FILES = "true"
-  RAILS_STORAGE_PATH = "/data/storage"
-
-[[mounts]]
-  source = "chefie_data"
-  destination = "/data"
 
 [http_service]
-  internal_port = 3000
-  force_https = true
-  auto_stop_machines = "stop"
-  auto_start_machines = true
-  min_machines_running = 0
+internal_port = 8080
+force_https = true
+auto_stop_machines = "stop"
+auto_start_machines = true
+min_machines_running = 0
+processes = ["app"]
 
-# Run migrations on deploy
+[[http_service.checks]]
+interval = "10s"
+timeout = "2s"
+grace_period = "5s"
+method = "GET"
+path = "/up"
+protocol = "http"
+tls_skip_verify = false
+[http_service.checks.headers]
+X-Forwarded-Proto = "https"
+
+[[vm]]
+memory = "1gb"
+cpus = 1
+
 [deploy]
-  release_command = "bin/rails db:prepare"
+release_command = "bin/rails db:migrate"
+
+[[statics]]
+guest_path = "/app/public"
+url_prefix = "/"

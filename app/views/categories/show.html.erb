@@ -20,11 +20,12 @@
           <% @recipes.each do |recipe| %>
             <article class="card">
               <div class="card-image-wrapper">
-                <% if recipe.image.attached? %>
-                  <%= image_tag recipe.image, alt: "Image for #{recipe.title}", class: "card-image" %>
-                <% else %>
-                  <%= image_tag "placeholder.jpg", alt: "No image available", class: "card-image" %>
-                <% end %>
+                <%= safe_attachment_image_tag(
+                      recipe.image,
+                      fallback: "placeholder.jpg",
+                      alt: "Image for #{recipe.title}",
+                      class: "card-image"
+                    ) %>
               </div>
 
               <h3 class="card-title"><%= recipe.title %></h3>

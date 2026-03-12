@@ -5,7 +5,7 @@ gem "rails", "~> 7.2.2", ">= 7.2.2.1"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 # Use sqlite3 as the database for Active Record
-gem 'pg'
+gem "pg"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
@@ -17,9 +17,9 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
-gem 'kaminari'
+gem "kaminari"
 
-gem 'mini_magick'
+gem "mini_magick"
 
 gem "image_processing", "~> 1.2"
 
@@ -39,12 +39,14 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
-gem 'devise'
-gem 'sassc-rails'
+gem "devise"
+gem "sassc-rails"
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
 group :development, :test do
+  gem "dotenv-rails"
+
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
 
@@ -68,3 +70,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "dockerfile-rails", ">= 1.7", group: :development

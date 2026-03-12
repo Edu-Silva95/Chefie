@@ -1,20 +1,20 @@
-# config/database.yml
-
 default: &default
   adapter: postgresql
   encoding: unicode
-  pool: 5
-  username: <%= ENV['DB_USERNAME'] %> # Add your username here
-  password: <%= ENV['DB_PASSWORD'] %> # Add your password here
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS", 5) %>
 
 development:
   <<: *default
-  database: your_app_development
+  url: <%= ENV["DATABASE_URL"].to_s != "" ? ENV["DATABASE_URL"] : "postgresql://localhost/recipe_app_development" %>
 
 test:
   <<: *default
-  database: your_app_test
+  url: <%= ENV["DATABASE_URL_TEST"].to_s != "" ? ENV["DATABASE_URL_TEST"] : "postgresql://localhost/recipe_app_test" %>
 
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
+  <% if ENV["DATABASE_URL"].to_s != "" %>
+  url: <%= ENV["DATABASE_URL"] %>
+  <% else %>
+  database: recipe_app_production
+  <% end %>

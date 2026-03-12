@@ -1,4 +1,18 @@
 module ApplicationHelper
+  def safe_attachment_image_tag(attachment, fallback:, **options)
+    if attachment.respond_to?(:attached?) && attachment.attached? && attachment.respond_to?(:blob) && attachment.blob.present?
+      blob = attachment.blob
+
+      begin
+        return image_tag(attachment, **options) if blob.service.exist?(blob.key)
+      rescue StandardError
+        # Fall through to fallback
+      end
+    end
+
+    image_tag(fallback, **options)
+  end
+
   def flash_toast_variant(type, message)
     key = type.to_s
     text = message.to_s.downcase

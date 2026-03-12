@@ -102,6 +102,7 @@ Rails.application.configure do
   # ]
   config.hosts << /.*\.fly\.dev/
   config.hosts << ENV["APP_HOST"] if ENV["APP_HOST"].present?
+  config.hosts << IPAddr.new("0.0.0.0/0")
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 end

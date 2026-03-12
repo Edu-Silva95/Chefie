@@ -15,11 +15,12 @@
   </div>
 
   <div class="recipe-show__image-wrapper">
-    <% if @recipe.image.attached? %>
-      <%= image_tag @recipe.image, alt: "Image for #{@recipe.title}", class: "recipe-show__image" %>
-    <% else %>
-      <%= image_tag "placeholder.jpg", alt: "No image available", class: "recipe-show__image" %>
-    <% end %>
+    <%= safe_attachment_image_tag(
+          @recipe.image,
+          fallback: "placeholder.jpg",
+          alt: "Image for #{@recipe.title}",
+          class: "recipe-show__image"
+        ) %>
   </div>
 
   <div class="recipe-show__info">
