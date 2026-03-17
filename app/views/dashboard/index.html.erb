@@ -1,18 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<% content_for :title, "Recipe App - Dashboard" %>
+
+<% content_for :head do %>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;600&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
-  <title>Recipe App - Dashboard</title>
+<% end %>
 
-  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-  <%= csrf_meta_tags %>
-</head>
-
-<body>
-  <div class="app-container">
+<div class="app-container">
     <!-- Sidebar -->
     <aside class="sidebar">
       <h2 id="title">Chefie</h2>
@@ -27,9 +20,15 @@
           <%= current_user.username %> ▾
         </h2>
 
-        <ul data-user-dropdown-target="menu" class="user-profile__menu dropdown-menu hidden">
+        <ul class="user-profile__menu dropdown-menu hidden" data-user-dropdown-target="menu">
           <li><%= link_to "Settings", edit_user_registration_path %></li>
-          <li><%= link_to "Log Out", destroy_user_session_path, method: :delete, data: { turbo: false } %></li>
+          <li>
+            <%= button_to "Log Out",
+              destroy_user_session_path,
+              method: :delete,
+              form: { data: { turbo: false } },
+              class: "user-profile__menu-button" %>
+          </li>
         </ul>
       </div>
 
@@ -129,74 +128,68 @@
           </div>
         </section>
 
-            <div id="popup" class="popup">
-              <div class="popup__content">
-                <a href="#" onclick="closePopup(event)" class="popup__close">×</a>
-                <h3>Special Offer</h3>
-                <p>Order now and get 20% off your first order! 🎉</p>
-              </div>
-            </div>
+        <div id="popup" class="popup">
+          <div class="popup__content">
+            <a href="#" onclick="closePopup(event)" class="popup__close">×</a>
+            <h3>Special Offer</h3>
+            <p>Order now and get 20% off your first order! 🎉</p>
           </div>
-        </section>
         </div>
       </main>
     </div>
-  </div>
-  <script>
-   function scrollToPopup() {
+</div>
+
+<script>
+  function scrollToPopup() {
     setTimeout(() => {
-        const popup = document.getElementById("popup");
-        if (popup) {
-          // Get popup's position relative to the viewport + current scroll
-          const rect = popup.getBoundingClientRect();
-          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-          // Scroll to popup's top minus 20px for some spacing
-          window.scrollTo({
-            top: rect.top + scrollTop - 20,
-            behavior: "smooth"
-          });
-        }
-      }, 100);
-    }
-
-    window.addEventListener("hashchange", () => {
-      if (window.location.hash === "#popup") {
-        scrollToPopup();
-      }
-    });
-
-    function closePopup(event) {
-      event.preventDefault();
-
-      // Remove hash
-      history.pushState(null, document.title, window.location.pathname + window.location.search);
-
-      // Hide popup
       const popup = document.getElementById("popup");
+      if (popup) {
+        const rect = popup.getBoundingClientRect();
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        window.scrollTo({
+          top: rect.top + scrollTop - 20,
+          behavior: "smooth"
+        });
+      }
+    }, 100);
+  }
+
+  window.addEventListener("hashchange", () => {
+    if (window.location.hash === "#popup") {
+      scrollToPopup();
+    }
+  });
+
+  function closePopup(event) {
+    event.preventDefault();
+    history.pushState(null, document.title, window.location.pathname + window.location.search);
+    const popup = document.getElementById("popup");
+    if (popup) popup.classList.add("popup--hidden");
+  }
+
+  window.addEventListener("load", () => {
+    const popup = document.getElementById("popup");
+    if (!popup) return;
+
+    if (window.location.hash === "#popup") {
+      popup.classList.remove("popup--hidden");
+    } else {
       popup.classList.add("popup--hidden");
     }
+  });
 
-    window.addEventListener("load", () => {
-      const popup = document.getElementById("popup");
-      if (window.location.hash === "#popup") {
-        popup.classList.remove("popup--hidden");
-      } else {
-        popup.classList.add("popup--hidden");
+  window.addEventListener("hashchange", () => {
+    const popup = document.getElementById("popup");
+    if (!popup) return;
+
+    if (window.location.hash === "#popup") {
+      popup.classList.remove("popup--hidden");
+
+      const anchor = document.getElementById("popup-scroll-anchor");
+      if (anchor) {
+        anchor.scrollIntoView({ behavior: "smooth" });
       }
-    });
-
-    window.addEventListener("hashchange", () => {
-      const popup = document.getElementById("popup");
-      if (window.location.hash === "#popup") {
-        popup.classList.remove("popup--hidden");
-
-        const anchor = document.getElementById("popup-scroll-anchor");
-        if (anchor) {
-          anchor.scrollIntoView({ behavior: "smooth" });
-        }
-      }
-    });
-  </script>
-</body>
-</html>
+    }
+  });
+</script>
