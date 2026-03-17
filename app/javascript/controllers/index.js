@@ -4,6 +4,6 @@ import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading"
 eagerLoadControllersFrom("controllers", application)
 
 // Import and register the AOS controller
-import AOSController from "./aos_controller"
+import AOSController from "controllers/aos_controller"
 
 application.register("aos", AOSController)

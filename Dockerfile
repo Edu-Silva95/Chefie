@@ -42,6 +42,9 @@ RUN if [ -f package.json ]; then npm install --production; fi
 # Copy app
 COPY . .
 
+# Copy seed images so they are available for db:seed
+COPY db/seeds/images /app/db/seeds/images
+
 # Bootsnap
 RUN bundle exec bootsnap precompile app/ lib/
 

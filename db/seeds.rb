@@ -129,10 +129,12 @@ recipes_data.each do |data|
   filename = image_map[recipe.title]
   next unless filename
 
-  image_path = Rails.root.join("app/assets/images", filename)
+  image_path = Rails.root.join("db/seeds/images", filename)
   next unless File.exist?(image_path)
 
-  recipe.image.attach(io: File.open(image_path), filename: filename)
+  File.open(image_path) do |file|
+    recipe.image.attach(io: file, filename: filename)
+  end
 end
 
 puts "✅ Seeded #{User.count} users and #{Recipe.count} recipes."

@@ -6,7 +6,7 @@
 
      <div class="top-bar__inner">
       <div class="top-bar__center">
-        <img src="/assets/avatar.png" alt="Logo" class="top-bar__logo">
+        <%= image_tag "avatar.png", alt: "Logo", class: "top-bar__logo" %>
         <div class="top-bar__text">
           <span class="top-bar__title">My Courses & Feed</span>
           <p class="top-bar__subtitle">Here you can share videos of recipes and talk to other people!</p>
@@ -83,16 +83,17 @@
                   <span class="timestamp" style="margin-left: auto;"><%= item.created_at.strftime('%b %d, %Y at %H:%M') %></span>
 
                   <!-- Ellipsis Menu (Dropdown) -->
-                  <div class="dropdown dropdown-feed">
-                    <button class="ellipsis-btn">...</button>
+                  <details class="dropdown dropdown-feed">
+                    <summary class="ellipsis-btn">...</summary>
                     <div class="dropdown-content dropdown-content-feed">
                       <button class="dropdown-item report-btn" data-post-id="<%= item.id %>">Report</button>
 
                       <% if item.user == current_user %>
-                        <%= link_to 'Delete',
+                        <%= button_to 'Delete',
                           (item.is_a?(Post) ? post_path(item) : course_path(item)),
                           method: :delete,
-                          data: { confirm: item.is_a?(Post) ? 'Are you sure you want to delete this post?' : 'Are you sure you want to delete this course?' },
+                          data: { turbo_confirm: item.is_a?(Post) ? 'Are you sure you want to delete this post?' : 'Are you sure you want to delete this course?' },
+                          form: { class: 'dropdown-item-form' },
                           class: 'dropdown-item delete-item' %>
                       <% end %>
 
@@ -104,7 +105,7 @@
                         Share
                       </button>
                     </div>
-                  </div>
+                  </details>
                 </div>
                 <div class="item-content">
                   <% if item.is_a?(Post) %>
@@ -281,21 +282,6 @@
         courseForm.classList.toggle('hidden');
       });
     }
-
-    // Dropdown ellipsis
-    document.querySelectorAll('.ellipsis-btn').forEach(button => {
-      button.addEventListener('click', event => {
-        event.stopPropagation();
-        button.nextElementSibling.classList.toggle('show');
-      });
-    });
-
-    // Close dropdowns when clicking outside
-    window.addEventListener('click', () => {
-      document.querySelectorAll('.dropdown-content').forEach(dropdown => {
-        dropdown.classList.remove('show');
-      });
-    });
 
     // Back to top
     if (backToTopBtn) {

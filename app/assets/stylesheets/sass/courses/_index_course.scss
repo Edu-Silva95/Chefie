@@ -550,6 +550,18 @@
   display: inline-block;
 }
 
+details.dropdown > summary {
+  list-style: none;
+}
+
+details.dropdown > summary::-webkit-details-marker {
+  display: none;
+}
+
+details.dropdown[open] > .dropdown-content {
+  display: block;
+}
+
 .dropdown-content {
   display: none;
   position: absolute;
@@ -568,7 +580,28 @@
   color: black;
 }
 
+.dropdown-content button {
+  padding: 12px 16px;
+  display: block;
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+  color: black;
+  background: none;
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+.dropdown-content form {
+  margin: 0;
+}
+
 .dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown-content button:hover {
   background-color: #f1f1f1;
 }
 
